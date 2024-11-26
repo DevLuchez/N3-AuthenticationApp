@@ -51,19 +51,20 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyDFSS_6YhS4wKOUmGGVK6XQrI98lK6knWw',
-    appId: '1:560063274382:web:692a99a452e72271c1d8df',
+    appId: '1:560063274382:web:a499cb82a0c2cb6cc1d8df',
     messagingSenderId: '560063274382',
     projectId: 'mobile-n3',
     authDomain: 'mobile-n3.firebaseapp.com',
     storageBucket: 'mobile-n3.firebasestorage.app',
-    measurementId: 'G-H9LLLM1QQX',
+    measurementId: 'G-S0G8RW1YRC',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBXur4-ktaPFh2-McjZXqQCBkIq8eyn9Js',
-    appId: '1:560063274382:android:eedd1c6032206db5c1d8df',
+    appId: '1:560063274382:android:b6068fad604bddfdc1d8df',
     messagingSenderId: '560063274382',
     projectId: 'mobile-n3',
     storageBucket: 'mobile-n3.firebasestorage.app',
   );
+
 }

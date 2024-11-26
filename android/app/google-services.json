@@ -7,28 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:560063274382:android:d16e3f207184fb26c1d8df",
+        "mobilesdk_app_id": "1:560063274382:android:b6068fad604bddfdc1d8df",
         "android_client_info": {
-          "package_name": "catolica.mobile.n3"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBXur4-ktaPFh2-McjZXqQCBkIq8eyn9Js"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:560063274382:android:eedd1c6032206db5c1d8df",
-        "android_client_info": {
-          "package_name": "com.example.app"
+          "package_name": "com.example.mobile_n3"
         }
       },
       "oauth_client": [],
