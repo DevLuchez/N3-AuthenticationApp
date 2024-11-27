@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-
+import 'package:flutter/material.dart';
 import 'package:github_sign_in_plus/github_sign_in_plus.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,7 +15,74 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'GitHub Login Example',
-      home: const LoginPage(),
+      home: const SplashPage(),
+    );
+  }
+}
+
+/// Tela inicial para verificar o estado do login.
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  Future<void> _checkLoginStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('github_token');
+
+    if (token != null) {
+      final userInfo = await _fetchGitHubUser(token);
+      if (userInfo != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WelcomePage(userInfo: userInfo),
+          ),
+        );
+        return;
+      }
+    }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>?> _fetchGitHubUser(String token) async {
+    const url = 'https://api.github.com/user';
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      print('Erro ao obter informações do usuário: ${response.statusCode}');
+      return null;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }
@@ -39,16 +105,22 @@ class _LoginPageState extends State<LoginPage> {
     final result = await gitHubSignIn.signIn(context);
     if (result.status == GitHubSignInResultStatus.ok) {
       final token = result.token;
-      final userInfo = await _fetchGitHubUser(token!);
 
-      if (userInfo != null) {
-        // Redireciona para a página de boas-vindas
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => WelcomePage(userInfo: userInfo),
-          ),
-        );
+      if (token != null) {
+        // Salva o token para login persistente
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('github_token', token);
+
+        final userInfo = await _fetchGitHubUser(token);
+
+        if (userInfo != null) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WelcomePage(userInfo: userInfo),
+            ),
+          );
+        }
       }
     } else {
       print("Erro ao fazer login: ${result.errorMessage}");
@@ -93,6 +165,18 @@ class WelcomePage extends StatelessWidget {
 
   const WelcomePage({super.key, required this.userInfo});
 
+  Future<void> _logout(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('github_token');
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final String username = userInfo['login'] ?? 'Usuário';
@@ -129,10 +213,7 @@ class WelcomePage extends StatelessWidget {
               ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Retorna para a página inicial
-                Navigator.pop(context);
-              },
+              onPressed: () => _logout(context),
               child: const Text('Logout'),
             ),
           ],
