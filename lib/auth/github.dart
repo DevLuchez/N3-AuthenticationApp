@@ -39,7 +39,17 @@ class _GitHubAuthScreenState extends State<GitHubAuthScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: _signInWithGitHub,
-          child: Text("Sign in with GitHub"),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.network(
+                'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+                height: 24,
+              ),
+              SizedBox(width: 8),
+              Text("Sign in with GitHub"),
+            ],
+          ),
         ),
       ),
     );
