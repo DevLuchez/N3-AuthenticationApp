@@ -35,7 +35,7 @@ class _GitHubAuthScreenState extends State<GitHubAuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("GitHub Authentication")),
+      appBar: AppBar(title: Text("Authentication App - GitHub")),
       body: Center(
         child: ElevatedButton(
           onPressed: _signInWithGitHub,

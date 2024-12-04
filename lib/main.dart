@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GitHub Login Example',
+      debugShowCheckedModeBanner: false,
+      title: 'Authentication App - GitHub Login',
       home: const SplashPage(),
     );
   }
@@ -148,12 +149,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login com GitHub'),
+        title: const Text('Authentication App'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () => _signInWithGitHub(context),
           child: const Text('Login com GitHub'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xFF8621F8),
+            foregroundColor: Colors.white,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
         ),
       ),
     );
@@ -185,38 +194,48 @@ class WelcomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bem-vindo!'),
+        title: const Text('Authentication App'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(userInfo['avatar_url']),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Olá, $username!',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            if (name != null)
-              Text(
-                'Nome: $name',
-                style: const TextStyle(fontSize: 18),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(userInfo['avatar_url']),
               ),
-            if (email != null)
+              const SizedBox(height: 20),
               Text(
-                'E-mail: $email',
-                style: const TextStyle(fontSize: 18),
+                'Olá, $username!',
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _logout(context),
-              child: const Text('Logout'),
-            ),
-          ],
+              if (name != null)
+                Text(
+                  'Nome: $name',
+                  style: const TextStyle(fontSize: 18),
+                ),
+              if (email != null)
+                Text(
+                  'E-mail: $email',
+                  style: const TextStyle(fontSize: 18),
+                ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => _logout(context),
+                child: const Text('Logout'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF8935E8),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
