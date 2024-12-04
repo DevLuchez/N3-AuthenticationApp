@@ -1,4 +1,4 @@
-<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=c4c1ff&height=120&section=header"/>
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=8621F8&height=120&section=header"/>
 
 # N3 - Authentication App
 Aplicativo criado para avaliação final (N3) de Desenvolvimento Mobile, tratando-se de um aplicativo de autenticação de usuário. O desenvolvimento deste aplicativo foi realizado em equipe, contanto com o Daniel Fernando Costa Pereira, Laura Heloísa Luchez e Matheus Eduardo Pedrelli Mauricio.
@@ -19,9 +19,9 @@ A partir da [documentação do flutter](https://pub.dev/documentation/github_sig
 
 ## Dependências e suas Versões
 As dependências listadas abaixo foram utilizadas no desenvolvimento deste projeto, responsáveis pelo login através do provedor GitHub e pela persistência de login ao encerrar o aplicativo.
-- github_sign_in_plus → 0.0.2
+- [github_sign_in_plus → 0.0.2](https://pub.dev/packages/github_sign_in_plus/versions)
 > Biblioteca para integração com o GitHub para autenticação social.
-- shared_preferences → 2.3.3
+- [shared_preferences → 2.3.3](https://pub.dev/packages/shared_preferences)
 > Utilizada para persistência de dados no dispositivo.
 
 
@@ -43,4 +43,4 @@ cd seu-repositorio
 ![Dart](https://img.shields.io/badge/-Dart-0D1117?style=for-the-badge&logo=dart&labelColor=0D1117&textColor=0D1117)&nbsp;
 ![Firebase](https://img.shields.io/badge/-Firebase-0D1117?style=for-the-badge&logo=firebase&labelColor=0D1117&textColor=0D1117)&nbsp;
 
-<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=c4c1ff&height=120&section=footer"/>
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=8621F8&height=120&section=footer"/>
