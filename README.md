@@ -18,12 +18,16 @@ A partir da [documentação do flutter](https://pub.dev/documentation/github_sig
 - **Failed:** The login completed with an error and the user couldn't log in for some reason.
 
 ## Dependências e suas Versões
-As dependências listadas abaixo foram utilizadas no desenvolvimento deste projeto, responsáveis pelo login através do provedor GitHub e pela persistência de login ao encerrar o aplicativo.
-- [github_sign_in_plus → 0.0.2](https://pub.dev/packages/github_sign_in_plus/versions)
-> Biblioteca para integração com o GitHub para autenticação social.
-- [shared_preferences → 2.3.3](https://pub.dev/packages/shared_preferences)
-> Utilizada para persistência de dados no dispositivo.
-
+As dependências listadas abaixo foram utilizadas no desenvolvimento deste projeto.
+- flutter: SDK do Flutter.
+- firebase_core → 3.8.0
+- firebase_auth → 5.3.3
+- cloud_firestore → 5.5.0
+- firebase_storage → 12.3.6
+- github_sign_in_plus → 0.0.1
+- cupertino_icons → 1.0.8
+- shared_preferences → 2.3.3
+- webview_cookie_manager → 2.0.6
 
 ## Configuração e Importação do projeto
 Antes de configurar o projeto na máquina, é necessário verificar as versões que forem utilizadas neste projeto. Abaixo estão listadas as versões adequadas, é possível verificar as versões instalados do flutter e Dart executando `flutter --version`.
