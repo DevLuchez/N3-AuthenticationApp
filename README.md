@@ -19,9 +19,9 @@ A partir da [documentação do flutter](https://pub.dev/documentation/github_sig
 
 ## Dependências e suas Versões
 As dependências listadas abaixo foram utilizadas no desenvolvimento deste projeto, responsáveis pelo login através do provedor GitHub e pela persistência de login ao encerrar o aplicativo.
-- github_sign_in_plus → 0.0.2
+- [github_sign_in_plus → 0.0.2](https://pub.dev/packages/github_sign_in_plus/versions)
 > Biblioteca para integração com o GitHub para autenticação social.
-- shared_preferences → 2.3.3
+- [shared_preferences → 2.3.3](https://pub.dev/packages/shared_preferences)
 > Utilizada para persistência de dados no dispositivo.
 
 
