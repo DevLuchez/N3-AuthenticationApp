@@ -4,6 +4,10 @@ import 'package:github_sign_in_plus/github_sign_in_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:webview_cookie_manager/webview_cookie_manager.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -191,6 +195,10 @@ class WelcomePage extends StatelessWidget {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('github_token');
 
+    // Limpa os cookies para forçar o logout
+    final cookieManager = WebviewCookieManager();
+    await cookieManager.clearCookies();
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -207,48 +215,38 @@ class WelcomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Authentication App'),
+        title: const Text('Bem-vindo!'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(userInfo['avatar_url']),
-              ),
-              const SizedBox(height: 20),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage(userInfo['avatar_url']),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Olá, $username!',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            if (name != null)
               Text(
-                'Olá, $username!',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                'Nome: $name',
+                style: const TextStyle(fontSize: 18),
               ),
-              if (name != null)
-                Text(
-                  'Nome: $name',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              if (email != null)
-                Text(
-                  'E-mail: $email',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => _logout(context),
-                child: const Text('Logout'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF8935E8),
-                  foregroundColor: Colors.white,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
+            if (email != null)
+              Text(
+                'E-mail: $email',
+                style: const TextStyle(fontSize: 18),
               ),
-            ],
-          ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _logout(context),
+              child: const Text('Logout'),
+            ),
+          ],
         ),
       ),
     );
