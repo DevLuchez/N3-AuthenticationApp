@@ -154,7 +154,20 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: ElevatedButton(
           onPressed: () => _signInWithGitHub(context),
-          child: const Text('Login com GitHub'),
+          child: SizedBox(
+            width: 150,
+            child: Row(
+              children: [
+                Image.network(
+                  'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+                  height: 24,
+                  width: 24,
+                ),
+                SizedBox(width: 8),
+                const Text('Login com GitHub')
+              ],
+            ),
+          ),
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF8621F8),
             foregroundColor: Colors.white,
